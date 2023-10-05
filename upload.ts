@@ -24,6 +24,7 @@ const projectPath = 'D:/me/front/assets'
 
     const formData = new FormData()
     formData.append('hold', '')
+    formData.append('shared', '')
     formData.append('name', path.basename(process.argv[2]))
     formData.append('asset', file, path.basename(process.argv[2]))
 

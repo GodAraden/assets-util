@@ -12,7 +12,15 @@ import FormData from 'form-data'
 const projectPath = 'D:/me/front/assets'
 
 ;(async () => {
+  const filePath = process.argv[2]
   try {
+    // 网络上的图片资源粘贴到文件中，保留原 URL
+    if (filePath.startsWith('http')) {
+      console.log(filePath)
+      return
+    }
+
+    // 截屏 / 本地图片资源上传
     const parsed = Object.fromEntries(
       (await readFile(`${projectPath}/assets-util/.env.local`))
         .toString()
@@ -20,13 +28,13 @@ const projectPath = 'D:/me/front/assets'
         .map(line => line.split('='))
     )
 
-    const file = await readFile(process.argv[2])
+    const file = await readFile(filePath)
 
     const formData = new FormData()
     formData.append('hold', '')
     formData.append('shared', '')
-    formData.append('name', path.basename(process.argv[2]))
-    formData.append('asset', file, path.basename(process.argv[2]))
+    formData.append('name', path.basename(filePath))
+    formData.append('asset', file, path.basename(filePath))
 
     const { data } = await axios.post<string>(parsed.domain, formData, {
       headers: {

@@ -6,9 +6,10 @@
 
 1. 新建 .env.local 文件，内容为
 
-```env
-key=\<value\> # value 为后端定义的文件上传时的密钥
-domain=\<value\> # value 为后端服务运行地址
+```bash
+# 请把等号后面的所有文字替换成实际使用时的值，行尾序列选择 LF
+key=<value> # value 为后端定义的文件上传时的密钥
+domain=<value> # value 为后端服务运行地址
 ```
 
 2. pnpm i
